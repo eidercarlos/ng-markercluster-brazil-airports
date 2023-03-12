@@ -9,7 +9,7 @@ Para nós como desenvolvedores, é sempre importante ter conhecimento das ferram
 
 ## Clusterização de Marcadores
 
-De forma geral, o termo clusterização é usado para se referir ao ato de agrupar, categorizar, combinar dois ou mais recursos com o objetivo de ter um resultado final otimizado. Para o contexto de informação geográfica, a idéia é agrupar dois ou mais pontos geográficos mais próximos permitindo que seja visto apenas um ponto, mas com a quantidade que aquele ponto representa, conforme mostra a Figura 1 abaixo. Essa técnica é usada com bastante frequência em sistemas que fornecem algum tipo de visualização geográfica com base em grandes volumes de dados estatísticos que hoje já temos a definição de Geo Big Data. Já imaginou o custo computacional e até mesmo a poluição visual que seria ter milhares de pontos plotados em um mapa? Então a essa altura eu acredito que você já deve ter entendido a importância dessa técnica, certo?
+De forma geral, o termo clusterização é usado para se referir ao ato de agrupar, categorizar, combinar dois ou mais recursos com o objetivo de ter um resultado final otimizado. Para o contexto de informação geográfica, a idéia é, dependendo do nível de zoom, agrupar dois ou mais pontos geográficos mais próximos permitindo que seja visto apenas um ponto, mas com a quantidade que aquele ponto representa, conforme mostra a Figura 1 abaixo. Essa técnica é usada com bastante frequência em sistemas que fornecem algum tipo de visualização geográfica de grandes volumes de dados estatísticos geográficos que hoje já temos a definição de Geo Big Data. Já imaginou o custo computacional e até mesmo a poluição visual que seria ter milhares de pontos plotados em um mapa? Então a essa altura eu acredito que você já deve ter entendido a importância dessa técnica, certo? Sem mais demora, vamos conhecer e colocar em prática o uso dessas ferramentas.
 
 ![](src/assets/images/img-example-marker-clustering.png)
 Figura 1: Exemplo de clusterização de pontos geográficos.
@@ -21,6 +21,21 @@ Figura 1: Exemplo de clusterização de pontos geográficos.
 
 ## Instalação e Configuração
 
+Com o nosso gerenciador de pacotes `npm` vamos separar as instalações, sendo primeiramente a biblioteca `Leaflet` e suas dependências e logo em seguida o plugin `Leaflet.markercluster` e suas respectivas dependências. 
+
+`
+npm install leaflet
+`
+
+`
+npm install @asymmetrik/ngx-leaflet
+`
+
+`
+npm install --save-dev @types/leaflet
+`
+
+A última dependência é utilizada para definir a tipagem para uso na codificação em TypeScript, não sendo portanto necessário o uso em produção, apenas em desenvolvimento, e por esse motivo é utilizado a flag `--save-dev` no comando de instalação.
 
 ## Implementação
 
