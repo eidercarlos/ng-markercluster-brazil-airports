@@ -46,7 +46,7 @@ Feito a instalação das dependências acima, vamos para o arquivo **angular.jso
 "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
 ```
 
-No final, o arquivo deve ficar algo como:
+No final, o arquivo deve ficar com uma estrutura semelhante ao trecho abaixo:
 
 ```
 ...
@@ -68,11 +68,64 @@ No final, o arquivo deve ficar algo como:
 }
 ```
 
+Agora você já pode importar os módulos instalados a partir das dependências `ngx-leaflet` e `ngx-leaflet-markercluster` dentro do módulo onde você deseja fazer o uso dessa funcionalidade (no **AppModule** por exemplo) adicionando também no array de *imports* conforme mostra abaixo:
 
+```
+imports: [
+    ...,
+    LeafletModule,
+    LeafletMarkerClusterModule
+  ],
+```
+
+Se você fez todos os passos acima, então sua aplicação está pronta para ser implementada.
 
 ## Implementação
 
+Aqui, vamos começar com a parte lógica do componente (**arquivo .ts**) e logo em seguida incluímos o conteúdo do template (**arquivo .html**) e do estilo **.css**.
 
-## Visualização de Aeroportos do Brasil
+Primeiramente vamos declarar as variáveis necessárias para o funcionamento do nosso componente e para isso, devemos importar o módulo da biblioteca **Leaflet** e as principais funções dela que estaremos usando também.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+import * as L from 'leaflet';
+import { icon, latLng, marker } from 'leaflet';
+```
+
+E em seguida, a parte inicial do componente deve ficar da seguinte forma:
+
+```
+export class AppComponent {
+
+  map!: L.Map;
+  markerClusterGroup!: L.MarkerClusterGroup;
+  markerClusterData = [];
+
+  options = {
+    layers: [
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      })
+    ],
+    zoom: 4,
+    center: { lat: -14.4095261, lng: -51.31668 }
+  }
+
+  ngOnInit(){
+    this.markerClusterGroup = L.markerClusterGroup({removeOutsideVisibleBounds: true});
+  }
+  ...
+}
+```
+
+Para esse trecho acima, gostaria de deixar algumas observações aqui. O sinal `!` foi adicionado para suprimir um *warning* do TypeScript que exige a inicialização das respectivas variáveis logo junto com a declaração. Mas não se preocupe que logo abaixo é garantido que essas variáveis serão inicializadas. O objeto *option* é onde definimos a origem da camada do mapa mundial, e nesse caso optei pelo **OpenStreetMap**, mas poderia muito bem ser usado como fonte o Google Maps, dentre outros. Enquanto isso, as propriedades **zoom** e **center** foi a combinação de valores que encontrei que conseguisse enquadrar melhor todo o território Brasileiro. Mais a frente, você vai entender melhor o motivo de enquadrar no mapa o Brasil.
+
+Feito isso, vamos para a próxima etapa que é onde conseguimos os dados de pontos geográficos que usaremos como marcadores. 
+
+## Visualização de Aeroportos/Pistas de pouso e decolagem do Brasil
+
+Como Brasileiro, logo que pensei nessa funcionalidade, fui em busca de informações interessantes que eu pudesse apresentar como exemplo utilizando dados do nosso próprio país. É claro que também não poderia ser algo complexo que pudesse até confundir a cabeça dos leitores. Foi então que encontrei a API da [https://airlabs.co/](https://airlabs.co/) que nos fornece esses dados. 
+
+É bastante simples de usar, basta se cadastrar e é fornecido uma chave para realizar a consulta na API. Para tentar também não extender muito esse artigo, eu salvei em um arquivo `.json` o resultado da requisição na API (no endpoint `https://airlabs.co/api/v9/airports?country_code=BR&api_key=[chave_api_aqui]`), já que deixarei também disponível o repositório para ser testado (e não estourar a cota de requisições, já que a API também possui um limite).
+
+Dessa forma, voltamos ao nosso componente para fazer alguns ajustes.
+

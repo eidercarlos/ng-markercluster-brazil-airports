@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as L from 'leaflet';
 import { icon, latLng, marker } from 'leaflet';
+import * as geoJsonData from '../assets/brazil_airports.json';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import { icon, latLng, marker } from 'leaflet';
 export class AppComponent {
 
   map!: L.Map;
-  markerClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({removeOutsideVisibleBounds: true});
+  markerClusterGroup!: L.MarkerClusterGroup;
   markerClusterData = [];
+  brazilAirportsMarkers: any = geoJsonData;
 
   options = {
     layers: [
@@ -23,26 +25,19 @@ export class AppComponent {
     center: { lat: -14.4095261, lng: -51.31668 }
   }
 
+  ngOnInit(){
+    this.markerClusterGroup = L.markerClusterGroup({removeOutsideVisibleBounds: true});
+    console.log(JSON.stringify(this.brazilAirportsMarkers, null, 2));
+  }
+
   initMarkers() {
-    const initialMarkers = [
-      {
-        position: { lat: 28.625485, lng: 79.821091 }
-      },
-      {
-        position: { lat: 28.625293, lng: 79.817926 },
-      },
-      {
-        position: { lat: 28.625182, lng: 79.81464 },
-      }
-    ];
-    
-    for (let index = 0; index < initialMarkers.length; index++) {
+
+    this.brazilAirportsMarkers.response.forEach( (item:any) => {
       const mapIcon = this.getDefaultIcon();
-      const data = initialMarkers[index];
-      const coordinates = latLng([data.position.lat, data.position.lng]);
+      const coordinates = latLng([item.lat, item.lng]);
       let layer = marker(coordinates).setIcon(mapIcon);
       this.markerClusterGroup.addLayer(layer);
-    }    
+    });        
 
     this.addLayersToMap();
   }  
