@@ -9,7 +9,7 @@ Para nós como desenvolvedores, é sempre importante ter conhecimento das ferram
 
 ## Clusterização de Marcadores
 
-De forma geral, o termo clusterização é usado para se referir ao ato de agrupar, categorizar, combinar dois ou mais recursos com o objetivo de ter um resultado final otimizado. Para o contexto de informação geográfica, a idéia é, dependendo do nível de zoom, agrupar dois ou mais pontos geográficos mais próximos permitindo que seja visto apenas um ponto, mas com a quantidade que aquele ponto representa, conforme mostra a Figura 1 abaixo. Essa técnica é usada com bastante frequência em sistemas que fornecem algum tipo de visualização geográfica de grandes volumes de dados estatísticos geográficos - que hoje já temos como definição o nome *Geo Big Data*. Já imaginou o custo computacional e até mesmo a poluição visual que seria ter milhares de pontos plotados na mesma região em um mapa? Então a essa altura eu acredito que você já deve ter entendido a importância dessa técnica, certo? Sem mais demora, vamos conhecer e colocar em prática o uso dessas ferramentas.
+De forma geral, o termo clusterização é usado para se referir ao ato de agrupar, categorizar, combinar dois ou mais recursos com o objetivo de ter um resultado final otimizado. Para o contexto de informação geográfica, a idéia é, dependendo do nível de zoom, agrupar dois ou mais pontos geográficos mais próximos permitindo que seja visto apenas um ponto, mas com a quantidade que aquele ponto representa, conforme mostra a Figura 1 abaixo. Essa técnica é usada com bastante frequência em sistemas que fornecem algum tipo de visualização geográfica de grandes volumes de dados estatísticos geográficos - que hoje já temos como definição o nome **Geo Big Data**. Já imaginou o custo computacional e até mesmo a poluição visual que seria ter milhares de pontos plotados na mesma região em um mapa? Então a essa altura eu acredito que você já deve ter entendido a importância dessa técnica, certo? Sem mais demora, vamos conhecer e colocar em prática o uso dessas ferramentas.
 
 ![](src/assets/img/img-example-marker-clustering.png)
 Figura 1: Exemplo de clusterização de pontos geográficos.
@@ -21,7 +21,7 @@ Figura 1: Exemplo de clusterização de pontos geográficos.
 
 ## Instalação e Configuração
 
-Com o nosso gerenciador de pacotes **npm** vamos separar as instalações, sendo primeiramente a biblioteca **Leaflet** e suas dependências e logo em seguida o plugin **Leaflet.markercluster** e suas respectivas dependências. 
+Com o nosso gerenciador de pacotes **npm**, vamos separar as instalações, sendo primeiramente a biblioteca **Leaflet** e suas dependências e logo em seguida o plugin **Leaflet.markercluster** e suas respectivas dependências. 
 
 ```
 npm install leaflet
@@ -127,9 +127,9 @@ Feito isso, vamos para a próxima etapa que é onde conseguimos os dados de pont
 
 Como Brasileiro, logo que pensei nessa funcionalidade, fui em busca de informações interessantes que eu pudesse apresentar como exemplo utilizando dados do nosso próprio país. É claro que também não poderia ser algo complexo que pudesse de alguma forma confundir a cabeça dos leitores. Foi então que encontrei a API da [https://airlabs.co/](https://airlabs.co/) que nos fornece as posições geográficas (latitude e longitude) dos Aeroportos e Pistas de pouso e decolagem do Brasil. 
 
-É bastante simples de usar, basta se cadastrar e é fornecido uma chave para realizar a consulta na API. Para tentar também não extender muito esse artigo, eu salvei em um arquivo `.json` o resultado da requisição na API (no endpoint `https://airlabs.co/api/v9/airports?country_code=BR&api_key=[chave_api_aqui]`), já que deixarei também disponível o repositório para ser testado (e não estourar a cota de requisições, já que a API também possui um limite).
+É bastante simples de usar, basta se cadastrar e é fornecido uma chave para realizar a consulta na API. Para tentar também não extender muito esse artigo, eu salvei em um arquivo **.json** o resultado da requisição na API (no endpoint `https://airlabs.co/api/v9/airports?country_code=BR&api_key=[chave_api_aqui]`), já que deixarei também disponível o repositório para ser testado (e não estourar a cota de requisições, já que a API também possui um limite).
 
-Dessa forma, voltamos ao nosso componente para fazer alguns ajustes. Mas antes, é importante verificar se no arquivo `tsconfig.json` está definido como `true` a propriedade `"resolveJsonModule"`, da seguinte forma:
+Dessa forma, voltamos ao nosso componente para fazer alguns ajustes. Mas antes, é importante verificar se no arquivo **tsconfig.json** está definido como `true` a propriedade `"resolveJsonModule"`, da seguinte forma:
 
 ```
 {
@@ -148,13 +148,13 @@ Assim, podemos então importar o arquivo que contém as localizações dentro do
 import * as geoJsonData from '../assets/brazil_airports.json';
 ```
 
-Declarar uma variável com o conteúdo do arquivo 
+Também declarar uma variável com o conteúdo do arquivo:
 
 ```
 brazilAirportsMarkers: any = geoJsonData;
 ```
 
-E criar um método para fazer a leitura dos dados e gerar os marcadores que serão adicionados no mapa, conforme as coordenadas geográficas. E é onde usamos também as funções *icon*, *latLng* e *marker* que importamos anteriormente:
+E criar um método para fazer a leitura dos dados e gerar os marcadores que serão adicionados no mapa, conforme as coordenadas geográficas. E é onde usamos também as funções **icon**, **latLng** e **marker** que importamos anteriormente:
 
 ```
 initMarkers() {
@@ -182,8 +182,8 @@ private addLayersToMap() {
 }
 ```
 
-Você deve ter notado que a função icon()
-Por fim, vamos incluir também o método que é acionado com o disparo do evento *leafletMapReady* e que por sua vez chama o método **initMarkers()** que é responsável por gerar os marcadores:
+Você deve ter notado que a função **icon()**
+Por fim, vamos incluir também o método que é acionado com o disparo do evento *leafletMapReady*, e que por sua vez chama o método **initMarkers()** - responsável por gerar os marcadores:
 
 
 ```
@@ -212,8 +212,19 @@ Fechamos então com o conteúdo do arquivo de estilos **.css** que, por se trata
 }
 ```
 
-Com isso, basta rodar o comando `npm serve` e teremos esse belo mapa com a clusterização de marcadores:
+Com isso, basta executar o comando `npm serve` e teremos esse belo mapa com a clusterização de marcadores:
 
 ![](src/assets/img/img-marker-clustering.png)
-Figura 1: Exemplo de clusterização de pontos geográficos.
+Figura 2: Clusterização de marcadores onde estão localizados os Aeroportos e Pistas de decolagem e pouso no Brasil.
+
+O código completo você pode acessar através do [repositório](https://github.com/eidercarlos/ng-markercluster-brazil-airports) que criei no meu GitHub.
+
+
+## Conclusão
+
+É claro que a biblioteca **Leaflet** possui uma diversidade de [plugins](https://leafletjs.com/plugins.html) que permitem enriquecer ainda mais a interação e a experiência do usuário com a visualização de informações geográficas. Quem sabe em um próximo artigo podemos explorar e apresentar uma outra funcionalidade interessante.
+
+Espero que tenha conseguido expressar de forma simples e intuitiva o conteúdo desse artigo. Mas caso tenha ficado alguma dúvida, sugestão ou crítica, deixo aqui meu e-mail [eidercarlos@gmail.com](eidercarlos@gmail.com) e fiquem à vontade para entrar em contato.
+
+Abraços!
 
