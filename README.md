@@ -182,8 +182,7 @@ private addLayersToMap() {
 }
 ```
 
-Você deve ter notado que a função **icon()**
-Por fim, vamos incluir também o método que é acionado com o disparo do evento *leafletMapReady*, e que por sua vez chama o método **initMarkers()** - responsável por gerar os marcadores:
+Por fim, vamos incluir também o método que é acionado com o disparo do evento *leafletMapReady*, e que por sua vez chama o método **initMarkers()**, que é responsável por gerar os marcadores:
 
 
 ```
@@ -204,7 +203,7 @@ O conteúdo do arquivo de template deve então ficar da seguinte forma:
 </div>
 ```
 
-Fechamos então com o conteúdo do arquivo de estilos **.css** que, por se tratar de apenas uma propriedade dentro de uma classe, poderia sem problemas ser adicionado *inline*.
+Fechamos então com o conteúdo do arquivo de estilos **.css** que, por se tratar de apenas uma propriedade dentro de uma classe, poderia também sem problemas ser adicionado *inline*.
 
 ```
 .map-container {
@@ -224,7 +223,7 @@ O código completo você pode acessar através do [repositório](https://github.
 
 É claro que a biblioteca **Leaflet** possui uma diversidade de [plugins](https://leafletjs.com/plugins.html) que permitem enriquecer ainda mais a interação e a experiência do usuário com a visualização de informações geográficas. Quem sabe em um próximo artigo podemos explorar e apresentar uma outra funcionalidade interessante.
 
-Espero que tenha conseguido expressar de forma simples e intuitiva o conteúdo desse artigo. Mas caso tenha ficado alguma dúvida, sugestão ou crítica, deixo aqui meu e-mail (eidercarlos@gmail.com) e fiquem à vontade para entrar em contato.
+Espero que tenha conseguido expressar de forma simples e intuitiva o conteúdo deste artigo. Mas caso tenha ficado alguma dúvida, sugestão ou crítica, deixo aqui meu e-mail (eidercarlos@gmail.com) e fiquem à vontade para entrar em contato.
 
 Abraços!
 
