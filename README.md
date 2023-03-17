@@ -123,11 +123,11 @@ Em relação às propriedades **zoom** e **center**, foi a combinação de valor
 
 Feito isso, vamos para a próxima etapa que é onde conseguimos os dados de pontos geográficos que usaremos como marcadores. 
 
-## Visualização de Aeroportos/Pistas de pouso e decolagem do Brasil
+### Visualização de Aeroportos/Pistas de pouso e decolagem do Brasil
 
 Como Brasileiro, logo que pensei nessa funcionalidade, fui em busca de informações interessantes que eu pudesse apresentar como exemplo utilizando dados do nosso próprio país. É claro que também não poderia ser algo complexo que pudesse de alguma forma confundir a cabeça dos leitores. Foi então que encontrei a API da [https://airlabs.co/](https://airlabs.co/) que nos fornece as posições geográficas (latitude e longitude) dos Aeroportos e Pistas de pouso e decolagem do Brasil. 
 
-É bastante simples de usar, basta se cadastrar e é fornecido uma chave para realizar a consulta na API. Para tentar também não extender muito esse artigo, eu salvei em um arquivo **.json** o resultado da requisição na API (no endpoint `https://airlabs.co/api/v9/airports?country_code=BR&api_key=[chave_api_aqui]`), já que deixarei também disponível o repositório para ser testado (e não estourar a cota de requisições, já que a API também possui um limite).
+É bastante simples de usar, basta se cadastrar e é fornecido uma chave para realizar a consulta na API. Para tentar também não estender muito esse artigo, eu salvei em um arquivo **.json** o resultado da requisição na API (no endpoint `https://airlabs.co/api/v9/airports?country_code=BR&api_key=[chave_api_aqui]`), já que deixarei também disponível o repositório para ser testado (e não estourar a cota de requisições, já que a API também possui um limite).
 
 Dessa forma, voltamos ao nosso componente para fazer alguns ajustes. Mas antes, é importante verificar se no arquivo **tsconfig.json** está definido como `true` a propriedade `"resolveJsonModule"`, da seguinte forma:
 
@@ -224,7 +224,7 @@ O código completo você pode acessar através do [repositório](https://github.
 
 É claro que a biblioteca **Leaflet** possui uma diversidade de [plugins](https://leafletjs.com/plugins.html) que permitem enriquecer ainda mais a interação e a experiência do usuário com a visualização de informações geográficas. Quem sabe em um próximo artigo podemos explorar e apresentar uma outra funcionalidade interessante.
 
-Espero que tenha conseguido expressar de forma simples e intuitiva o conteúdo desse artigo. Mas caso tenha ficado alguma dúvida, sugestão ou crítica, deixo aqui meu e-mail [eidercarlos@gmail.com](eidercarlos@gmail.com) e fiquem à vontade para entrar em contato.
+Espero que tenha conseguido expressar de forma simples e intuitiva o conteúdo desse artigo. Mas caso tenha ficado alguma dúvida, sugestão ou crítica, deixo aqui meu e-mail (eidercarlos@gmail.com) e fiquem à vontade para entrar em contato.
 
 Abraços!
 
