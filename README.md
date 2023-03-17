@@ -214,6 +214,7 @@ Fechamos então com o conteúdo do arquivo de estilos **.css** que, por se trata
 Com isso, basta executar o comando `npm serve` e teremos esse belo mapa com a clusterização de marcadores:
 
 ![](src/assets/img/img-marker-clustering.png)
+
 Figura 2: Clusterização de marcadores onde estão localizados os Aeroportos e Pistas de decolagem e pouso no Brasil.
 
 O código completo você pode acessar através do [repositório](https://github.com/eidercarlos/ng-markercluster-brazil-airports) que criei no meu GitHub.
