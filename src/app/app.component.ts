@@ -14,6 +14,7 @@ export class AppComponent {
   markerClusterGroup!: L.MarkerClusterGroup;
   markerClusterData = [];
   brazilAirportsMarkers: any = geoJsonData;
+  buildUrl = 'https://eidercarlos.github.io/ng-markercluster-brazil-airports-build/';
 
   options = {
     layers: [
@@ -27,7 +28,6 @@ export class AppComponent {
 
   ngOnInit(){
     this.markerClusterGroup = L.markerClusterGroup({removeOutsideVisibleBounds: true});
-    console.log(JSON.stringify(this.brazilAirportsMarkers, null, 2));
   }
 
   initMarkers() {
@@ -41,12 +41,12 @@ export class AppComponent {
 
     this.addLayersToMap();
   }  
-
+  
   private getDefaultIcon() {
       return icon({
         iconSize: [25, 41],
         iconAnchor: [13, 41],
-        iconUrl: 'assets/marker-icon.png'
+        iconUrl: this.buildUrl+'assets/marker-icon.png'
     });
   }
   
